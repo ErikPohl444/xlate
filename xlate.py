@@ -10,6 +10,7 @@ from contextlib import contextmanager
 
 # TODO: allow output format to be a list of field names
 
+
 @contextmanager
 def xlate_string_formats(
         xlate_input_delimiter,
@@ -26,7 +27,6 @@ def xlate_string_formats(
     else:
         yield_fun = xlate_instance.to_string_forcing_positional
     yield yield_fun
-    yield_fun = None
 
 
 class xlate:
