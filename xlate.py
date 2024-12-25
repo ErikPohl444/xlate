@@ -1,10 +1,10 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-'''
+"""
 Created on Dec 13, 2018
 
 @author: Erik Pohl
-'''
+"""
 
 from contextlib import contextmanager
 
@@ -30,9 +30,11 @@ def xlate_string_formats(
 
 
 class xlate:
-    '''easily xlate one string format into another
+    """
+    easily xlate one string format into another
     string format -- using keywords or positional
-    -- or even into a dictionary'''
+    -- or even into a dictionary
+    """
 
     def __init__(
             self,
@@ -45,11 +47,11 @@ class xlate:
         self.output_format = xlate_output_format
 
     def _convert_to_positional(self, key_field_output_format):
-        '''
+        """
         converts an output format into positional from field names
         :param key_field_output_format: output format
         :return:
-        '''
+        """
         positional_output_format = ''
         first_index = None
         last_index = 0
@@ -68,12 +70,12 @@ class xlate:
         return positional_output_format
 
     def to_string_forcing_positional(self, input_data):
-        '''
+        """
         takes an input, splits it by delimiter,
         applies a list of columns in the input_format,
         and returns fields in a string based on the output_format
         works on positional and non positional output
-        '''
+        """
         return (
             self._convert_to_positional(self.output_format).format(
                 *input_data.split(self.input_delimiter)
@@ -81,12 +83,12 @@ class xlate:
         )
 
     def to_string_using_keyword_format(self, input_data):
-        '''
+        """
         takes an input, splits it by delimiter,
         applies a list of columns in the input_format,
         and returns fields in a string based on the output_format
         works on positional and non positional output
-        '''
+        """
         if self.input_format:
             return self.output_format.format(**self.to_dictionary(input_data))
         else:
@@ -99,12 +101,12 @@ class xlate:
             )
 
     def to_dictionary(self, input_data):
-        '''
+        """
         takes an input, splits it by delimiter,
         applies a list of columns in the input_format
         or numbers if no input format,
         and returns fields in a dict
-        '''
+        """
         return {
             key: value
             for (key, value)
